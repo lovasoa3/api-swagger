@@ -1,0 +1,61 @@
+openapi: 3.0.3
+info:
+  title: TD1 specification Onboarding API
+  description: specification onboarding process
+  version: 1.0.0
+paths:
+  /students:
+    post:
+      summary: Create a new student account
+      operationId: studentID
+      requestBody:
+        description: Student account details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '201':
+          description: Student account created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+        '400':
+          description: Invalid input
+  /students/{studentId}:
+    get:
+      summary: Get student details by ID
+      operationId: getStudent
+      parameters:
+        - name: studentId
+          in: path
+          description: ID of the student
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: student details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+        '404':
+          description: Student not found
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+        name:
+          type: string
+          example: lova
+        birthdate:
+          type: string
+          example: é_
+       
